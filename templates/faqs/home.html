@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Home - FAQ System{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h1 class="display-4">Welcome to FAQ System</h1>
+            <p class="lead text-muted">Find answers to frequently asked questions in multiple languages</p>
+        </div>
+    </div>
+
+    {% if user.is_staff %}
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Quick Actions</h5>
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'admin:faqs_faq_add' %}" class="btn btn-primary">Add New FAQ</a>
+                            <a href="{% url 'admin:faqs_faq_changelist' %}" class="btn btn-outline-primary">Manage FAQs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        {% if faqs %}
+            {% for faq in faqs %}
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ faq.question }}</h5>
+                            <div class="card-text">{{ faq.answer|safe }}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center">
+                <div class="alert alert-info">
+                    No FAQs available yet.
+                    {% if user.is_staff %}
+                        <a href="{% url 'admin:faqs_faq_add' %}" class="alert-link">Add one now!</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
