@@ -11,7 +11,7 @@ A Django-based FAQ management system with multilingual support, built with moder
 ### Setup (5 minutes)
 1. Clone and setup:
 ```bash
-git clone [repository-url]
+git clone [[repository-url]](https://github.com/Manideep285/barathfd-test.git)
 cd barathfd
 python -m venv venv
 venv\Scripts\activate  # On Windows
